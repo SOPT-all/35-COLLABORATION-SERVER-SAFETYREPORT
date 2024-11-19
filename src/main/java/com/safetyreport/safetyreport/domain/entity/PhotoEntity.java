@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class PictureEntity {
+public class PhotoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
@@ -20,10 +20,10 @@ public class PictureEntity {
     public String photoUrl;
 
     @Column(name = "created_at")
-    public LocalDateTime createdAt;
+    public LocalDateTime createdAt = LocalDateTime.now();
 
     @Builder
-    public PictureEntity(LocalDateTime createdAt, Long id, String photoUrl) {
+    public PhotoEntity(LocalDateTime createdAt, Long id, String photoUrl) {
         this.createdAt = createdAt;
         this.id = id;
         this.photoUrl = photoUrl;
