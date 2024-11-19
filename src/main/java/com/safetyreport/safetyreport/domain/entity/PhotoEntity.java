@@ -5,6 +5,8 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 
@@ -22,10 +24,16 @@ public class PhotoEntity {
     @Column(name = "created_at")
     public LocalDateTime createdAt = LocalDateTime.now();
 
+    @ManyToOne(targetEntity = UserEntity.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private UserEntity userEntity;
+
     @Builder
-    public PhotoEntity(LocalDateTime createdAt, Long id, String photoUrl) {
+    public PhotoEntity(LocalDateTime createdAt, Long id, String photoUrl, UserEntity userEntity) {
         this.createdAt = createdAt;
         this.id = id;
         this.photoUrl = photoUrl;
+        this.userEntity = userEntity;
     }
 }
