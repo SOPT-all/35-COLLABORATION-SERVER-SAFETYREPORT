@@ -25,9 +25,6 @@ public class UserEntity {
     @Column
     public int mileage;
 
-    @OneToMany(mappedBy = "userEntity", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    private List<ReportEntity> ReportEntities;
-
     @Builder
     public UserEntity(Long id, int mileage, int monthReportCount, int yearReportCount) {
         this.id = id;
