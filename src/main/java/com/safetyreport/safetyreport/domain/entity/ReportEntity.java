@@ -45,13 +45,14 @@ public class ReportEntity {
     private PhotoEntity photoEntity;
 
     @Builder
-    public ReportEntity(String address, Category category, String content, LocalDateTime createdAt, Long id, String phoneNumber, UserEntity userEntity) {
+    public ReportEntity(String address, Category category, String content, LocalDateTime createdAt, Long id, String phoneNumber, PhotoEntity photoEntity, UserEntity userEntity) {
         this.address = address;
         this.category = category;
         this.content = content;
         this.createdAt = createdAt;
         this.id = id;
         this.phoneNumber = phoneNumber;
+        this.photoEntity = photoEntity;
         this.userEntity = userEntity;
     }
 }
