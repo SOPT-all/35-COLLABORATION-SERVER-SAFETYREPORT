@@ -1,4 +1,4 @@
-package com.safetyreport.safetyreport;
+package com.safetyreport;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
