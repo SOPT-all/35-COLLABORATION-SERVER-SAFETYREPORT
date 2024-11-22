@@ -1,4 +1,4 @@
-package com.safetyreport.safetyreport.domain.entity;
+package com.safetyreport.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -8,16 +8,18 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@Table(name = "category")
 public class CategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    @Column(name = "id")
+    private Long id;
 
-    @Column(name = "category_name")
-    public String name;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    @Column(name = "category_description")
-    public String description;
+    @Column(name = "description", nullable = false)
+    private String description;
 
     public CategoryEntity(String description, Long id, String name) {
         this.description = description;

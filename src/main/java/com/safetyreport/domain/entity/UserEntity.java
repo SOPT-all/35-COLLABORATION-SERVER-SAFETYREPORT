@@ -1,4 +1,4 @@
-package com.safetyreport.safetyreport.domain.entity;
+package com.safetyreport.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -8,22 +8,26 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import com.safetyreport.global.entity.BaseTimeEntity;
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@Table(name = "user")
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    @Column(name = "id")
+    private Long id;
 
-    @Column(name = "year_report_count")
-    public int yearReportCount;
+    @Column(name = "year_report_count", nullable = false)
+    private int yearReportCount;
 
-    @Column(name = "month_report_count")
-    public int monthReportCount;
+    @Column(name = "month_report_count", nullable = false)
+    private int monthReportCount;
 
-    @Column
-    public int mileage;
+    @Column(name = "mileage", nullable = false)
+    private int mileage;
 
     @Builder
     public UserEntity(Long id, int mileage, int monthReportCount, int yearReportCount) {
