@@ -71,9 +71,8 @@ public class ReportService {
 		ReportEntity reportEntity = ReportEntity.builder()
 				.content(postReportRequest.content())
 				.address(postReportRequest.address())
-				.createdAt(LocalDateTime.now())
 				.phoneNumber(postReportRequest.phoneNumber())
-				.categoryEnum(CategoryEnum.PARKING)
+				.categoryEnum(CategoryEnum.valueOf(postReportRequest.category()))
 				.userEntity(userEntity)
 				.build();
 		ReportEntity savedReportEntity = reportRepository.save(reportEntity);
@@ -83,7 +82,6 @@ public class ReportService {
 				.map(photoDetail -> PhotoEntity.builder()
 						.photoUrl(photoDetail.photoUrl())
 						.userEntity(userEntity)
-						.createdAt(LocalDateTime.now())
 						.reportEntity(savedReportEntity)
 						.build())
 				.toList();

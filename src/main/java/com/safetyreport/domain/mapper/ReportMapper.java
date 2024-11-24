@@ -23,7 +23,6 @@ public class ReportMapper {
 			.address(domain.getAddress())
 			.phoneNumber(domain.getPhoneNumber())
 			.categoryEnum(domain.getCategoryEnum())
-			.createdAt(domain.getCreatedAt())
 			.userEntity(UserMapper.toEntity(domain.getUser()))
 			.build();
 	}

@@ -41,8 +41,7 @@ public class PhotoEntity extends BaseTimeEntity {
 
 
     @Builder
-    public PhotoEntity(LocalDateTime createdAt, Long id, String photoUrl, ReportEntity reportEntity, UserEntity userEntity) {
-        this.createdAt = createdAt;
+    public PhotoEntity(Long id, String photoUrl, ReportEntity reportEntity, UserEntity userEntity) {
         this.id = id;
         this.photoUrl = photoUrl;
         this.reportEntity = reportEntity;

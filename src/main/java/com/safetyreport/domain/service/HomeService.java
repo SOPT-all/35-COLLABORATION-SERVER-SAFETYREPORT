@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,31 +31,53 @@ public class HomeService {
     private final BannerRepository bannerRepository;
     private final UserRepository userRepository;
     private final PhotoRepository photoRepository;
+//
+//    @Transactional(readOnly = true)
+//    public HomeRetrieveResponse getHome(final Long userId){
+//
+////        List<BannerEntity> bannerEntityList = bannerRepository.findAll();
+////        if(bannerEntityList.isEmpty()){
+////            throw new BusinessException(ErrorCode.DATA_NOT_FOUND);
+////        }
+////        List<BannerDetail> bannerDetailList = bannerEntityList.stream()
+////                .map(bannerEntity -> new BannerDetail(
+////                        bannerEntity.getId(), bannerEntity.getBannerUrl()
+////                ))
+////                .toList();
+////
+////        UserEntity userEntity = userRepository.findById(userId)
+////                .orElseThrow(()-> new BusinessException(ErrorCode.USER_NOT_FOUND));
+////        User user = UserMapper.toDomain(userEntity);
+////
+////
+////        return new HomeRetrieveResponse(
+////                user.getId(),
+////                user.getYearReportCount(),
+////                user.getMonthReportCount(),
+////                user.getMileage(),
+////                bannerDetailList
+////        );
+//    }
 
-    @Transactional(readOnly = true)
-    public HomeRetrieveResponse getHome(final Long userId){
-
-        List<BannerEntity> bannerEntityList = bannerRepository.findAll();
-        if(bannerEntityList.isEmpty()){
+    public List<BannerDetail> getBanners(){
+        List<BannerEntity> bannerEntities = bannerRepository.findAll();
+        if(bannerEntities.isEmpty()){
             throw new BusinessException(ErrorCode.DATA_NOT_FOUND);
         }
-        List<BannerDetail> bannerDetailList = bannerEntityList.stream()
+
+        List<BannerDetail> bannerDetails = bannerEntities.stream()
                 .map(bannerEntity -> new BannerDetail(
                         bannerEntity.getId(), bannerEntity.getBannerUrl()
                 ))
                 .toList();
+        return bannerDetails;
+    }
 
+    public User getUser(final Long userId) {
         UserEntity userEntity = userRepository.findById(userId)
-                .orElseThrow(()-> new BusinessException(ErrorCode.USER_NOT_FOUND));
+                .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
+
         User user = UserMapper.toDomain(userEntity);
-
-
-        return new HomeRetrieveResponse(
-                user.getId(),
-                user.getYearReportCount(),
-                user.getMonthReportCount(),
-                user.getMileage(),
-                bannerDetailList
-        );
+        return user;
     }
 }
