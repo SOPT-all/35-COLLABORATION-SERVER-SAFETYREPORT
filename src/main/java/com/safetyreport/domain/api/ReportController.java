@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.safetyreport.domain.api.dto.request.PostReportRequest;
 import com.safetyreport.domain.api.dto.response.*;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,13 +46,13 @@ public class ReportController {
 				.toList();
 
 		return ResponseEntity.ok(
-				SuccessResponse.of(SuccessCode.SUCCESS_FETCH, PhotoRetrieveResponse.of(photoDetailList)));
+				SuccessResponse.of(SuccessCode.SUCCESS_CREATE, PhotoRetrieveResponse.of(photoDetailList)));
 	}
 
 	@PostMapping
 	ResponseEntity<SuccessResponse<CreateRetrieveResponse>> createReport(
 			@RequestHeader final long userId,
-			@RequestBody PostReportRequest postReportRequest
+			@RequestBody @Valid PostReportRequest postReportRequest
 	){
 		CreateRetrieveResponse creatRetrieveResponse =reportService.createReport(userId, postReportRequest);
 		return ResponseEntity.ok(
