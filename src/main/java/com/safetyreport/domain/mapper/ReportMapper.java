@@ -13,7 +13,6 @@ public class ReportMapper {
 			entity.getCategoryEnum(),
 			entity.getCreatedAt(),
 			UserMapper.toDomain(entity.getUserEntity())
-//			PhotoMapper.toDomain(entity.getPhotoEntity())
 		);
 	}
 
@@ -26,7 +25,6 @@ public class ReportMapper {
 			.categoryEnum(domain.getCategoryEnum())
 			.createdAt(domain.getCreatedAt())
 			.userEntity(UserMapper.toEntity(domain.getUser()))
-//			.photoEntity(PhotoMapper.toEntity(domain.getPhoto()))
 			.build();
 	}
 }
