@@ -35,6 +35,9 @@ public class HomeService {
     public HomeRetrieveResponse getHome(final Long userId){
 
         List<BannerEntity> bannerEntityList = bannerRepository.findAll();
+        if(bannerEntityList.isEmpty()){
+            throw new BusinessException(ErrorCode.DATA_NOT_FOUND);
+        }
         List<BannerDetail> bannerDetailList = bannerEntityList.stream()
                 .map(bannerEntity -> new BannerDetail(
                         bannerEntity.getId(), bannerEntity.getBannerUrl()
