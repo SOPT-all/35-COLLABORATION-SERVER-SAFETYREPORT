@@ -4,13 +4,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.safetyreport.domain.api.dto.request.PostReportRequest;
-import com.safetyreport.domain.api.dto.response.CreatRetrieveResponse;
+import com.safetyreport.domain.api.dto.response.CreateRetrieveResponse;
 import com.safetyreport.domain.api.dto.response.PhotoDetail;
 import com.safetyreport.domain.entity.ReportEntity;
 import com.safetyreport.domain.entity.UserEntity;
 import com.safetyreport.domain.entity.enums.CategoryEnum;
 import com.safetyreport.domain.repository.ReportRepository;
-import com.safetyreport.global.entity.BaseTimeEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -65,7 +64,7 @@ public class ReportService {
 	}
 
 	@Transactional
-	public CreatRetrieveResponse createReport(Long userId, PostReportRequest postReportRequest){
+	public CreateRetrieveResponse createReport(Long userId, PostReportRequest postReportRequest){
 		UserEntity userEntity = userRepository.findById(userId)
 				.orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
 
@@ -98,7 +97,7 @@ public class ReportService {
 				))
 				.toList();
 
-		return new CreatRetrieveResponse(
+		return new CreateRetrieveResponse(
 				savedReportEntity.getId().toString(),
 				photoDetailList,
 				savedReportEntity.getContent(),

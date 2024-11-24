@@ -49,11 +49,11 @@ public class ReportController {
 	}
 
 	@PostMapping
-	ResponseEntity<SuccessResponse<CreatRetrieveResponse>> createReport(
+	ResponseEntity<SuccessResponse<CreateRetrieveResponse>> createReport(
 			@RequestHeader final long userId,
 			@RequestBody PostReportRequest postReportRequest
 	){
-		CreatRetrieveResponse creatRetrieveResponse =reportService.createReport(userId, postReportRequest);
+		CreateRetrieveResponse creatRetrieveResponse =reportService.createReport(userId, postReportRequest);
 		return ResponseEntity.ok(
 				SuccessResponse.of((SuccessCode.SUCCESS_FETCH), creatRetrieveResponse)
 		);

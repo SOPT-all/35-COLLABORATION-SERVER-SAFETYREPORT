@@ -2,7 +2,7 @@ package com.safetyreport.domain.api.dto.response;
 
 import java.util.List;
 
-public record CreatRetrieveResponse(
+public record CreateRetrieveResponse(
         String reportId,
         List<PhotoDetail> photoList,
         String content,
