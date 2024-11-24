@@ -17,7 +17,6 @@ public class PhotoMapper {
 		return PhotoEntity.builder()
 			.id(domain.getId())
 			.photoUrl(domain.getPhotoUrl())
-			.createdAt(domain.getCreatedAt())
 			.userEntity(UserMapper.toEntity(domain.getUser()))
 			.build();
 	}

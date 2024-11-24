@@ -12,8 +12,7 @@ public class ReportMapper {
 			entity.getPhoneNumber(),
 			entity.getCategoryEnum(),
 			entity.getCreatedAt(),
-			UserMapper.toDomain(entity.getUserEntity()),
-			PhotoMapper.toDomain(entity.getPhotoEntity())
+			UserMapper.toDomain(entity.getUserEntity())
 		);
 	}
 
@@ -24,9 +23,7 @@ public class ReportMapper {
 			.address(domain.getAddress())
 			.phoneNumber(domain.getPhoneNumber())
 			.categoryEnum(domain.getCategoryEnum())
-			.createdAt(domain.getCreatedAt())
 			.userEntity(UserMapper.toEntity(domain.getUser()))
-			.photoEntity(PhotoMapper.toEntity(domain.getPhoto()))
 			.build();
 	}
 }
