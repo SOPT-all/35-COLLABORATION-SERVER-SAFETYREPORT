@@ -34,7 +34,7 @@ public class HomeController {
         );
 
         return ResponseEntity.ok(
-                SuccessResponse.of(SuccessCode.SUCCESS_CREATE, homeRetrieveResponse)
+                SuccessResponse.of(SuccessCode.SUCCESS_FETCH, homeRetrieveResponse)
         );
     }
 
