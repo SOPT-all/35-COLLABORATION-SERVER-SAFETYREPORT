@@ -11,17 +11,17 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "banner")
 public class BannerEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
 
-    @Column(name = "banner_url", nullable = false)
-    private String bannerUrl;
+	@Column(name = "banner_url", nullable = false)
+	private String bannerUrl;
 
-    @Builder
-    public BannerEntity(String bannerUrl, Long id) {
-        this.bannerUrl = bannerUrl;
-        this.id = id;
-    }
+	@Builder
+	public BannerEntity(String bannerUrl, Long id) {
+		this.bannerUrl = bannerUrl;
+		this.id = id;
+	}
 }
