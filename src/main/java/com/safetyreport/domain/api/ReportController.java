@@ -56,7 +56,7 @@ public class ReportController {
 	){
 		CreateRetrieveResponse creatRetrieveResponse =reportService.createReport(userId, postReportRequest);
 		return ResponseEntity.ok(
-				SuccessResponse.of((SuccessCode.SUCCESS_FETCH), creatRetrieveResponse)
+				SuccessResponse.of((SuccessCode.SUCCESS_CREATE), creatRetrieveResponse)
 		);
 
 	}

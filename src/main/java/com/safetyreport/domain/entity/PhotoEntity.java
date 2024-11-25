@@ -39,7 +39,6 @@ public class PhotoEntity extends BaseTimeEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private ReportEntity reportEntity;
 
-
     @Builder
     public PhotoEntity(Long id, String photoUrl, ReportEntity reportEntity, UserEntity userEntity) {
         this.id = id;
@@ -47,4 +46,8 @@ public class PhotoEntity extends BaseTimeEntity {
         this.reportEntity = reportEntity;
         this.userEntity = userEntity;
     }
+
+
+
+
 }

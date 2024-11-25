@@ -53,4 +53,7 @@ public class ReportEntity extends BaseTimeEntity {
         this.phoneNumber = phoneNumber;
         this.userEntity = userEntity;
     }
+
+
+
 }
