@@ -46,7 +46,7 @@ public class ReportController {
 				.toList();
 
 		return ResponseEntity.ok(
-				SuccessResponse.of(SuccessCode.SUCCESS_CREATE, PhotoRetrieveResponse.of(photoDetailList)));
+				SuccessResponse.of(SuccessCode.SUCCESS_FETCH, PhotoRetrieveResponse.of(photoDetailList)));
 	}
 
 	@PostMapping
