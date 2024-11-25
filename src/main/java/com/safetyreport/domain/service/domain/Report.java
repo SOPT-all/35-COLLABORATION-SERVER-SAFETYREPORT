@@ -12,17 +12,15 @@ public class Report {
 	private final CategoryEnum categoryEnum;
 	private final LocalDateTime createdAt;
 	private final User user;
-	private final Photo photo;
 
-	public Report(long id, String content, String address, String phoneNumber, CategoryEnum categoryEnum, LocalDateTime createdAt, User user, Photo photo) {
+	public Report(long id, String content, String address, String phoneNumber, CategoryEnum categoryEnum, LocalDateTime createdAt, User user) {
+		this.address = address;
 		this.id = id;
 		this.content = content;
-		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.categoryEnum = categoryEnum;
 		this.createdAt = createdAt;
 		this.user = user;
-		this.photo = photo;
 	}
 
 	public long getId() {
@@ -51,9 +49,5 @@ public class Report {
 
 	public User getUser() {
 		return user;
-	}
-
-	public Photo getPhoto() {
-		return photo;
 	}
 }

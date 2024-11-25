@@ -2,16 +2,12 @@ package com.safetyreport.domain.api;
 
 import java.util.List;
 
+import com.safetyreport.domain.api.dto.request.PostReportRequest;
+import com.safetyreport.domain.api.dto.response.*;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.safetyreport.domain.api.dto.response.CategoryDetail;
-import com.safetyreport.domain.api.dto.response.CategoryRetrieveResponse;
-import com.safetyreport.domain.api.dto.response.PhotoDetail;
-import com.safetyreport.domain.api.dto.response.PhotoRetrieveResponse;
 import com.safetyreport.domain.service.ReportService;
 import com.safetyreport.domain.service.domain.Category;
 import com.safetyreport.domain.service.domain.Photo;
@@ -41,15 +37,27 @@ public class ReportController {
 
 	@GetMapping("/photo")
 	ResponseEntity<SuccessResponse<PhotoRetrieveResponse>> getPhotoList(
-		@RequestHeader final Long userId
-	){
+		@RequestHeader final long userId
+	) {
 		List<Photo> photoList = reportService.getPhotoList(userId);
 
 		List<PhotoDetail> photoDetailList = photoList.stream()
-			.map(photo -> new PhotoDetail(photo.getId(), photo.getPhotoUrl(), photo.getCreatedAt()))
-			.toList();
+				.map(photo -> new PhotoDetail(photo.getId(), photo.getPhotoUrl(), photo.getCreatedAt()))
+				.toList();
 
 		return ResponseEntity.ok(
-			SuccessResponse.of(SuccessCode.SUCCESS_FETCH, PhotoRetrieveResponse.of(photoDetailList)));
+				SuccessResponse.of(SuccessCode.SUCCESS_FETCH, PhotoRetrieveResponse.of(photoDetailList)));
+	}
+
+	@PostMapping
+	ResponseEntity<SuccessResponse<CreateRetrieveResponse>> createReport(
+			@RequestHeader final long userId,
+			@RequestBody @Valid PostReportRequest postReportRequest
+	){
+		CreateRetrieveResponse createRetrieveResponse =reportService.createReport(userId, postReportRequest);
+		return ResponseEntity.ok(
+				SuccessResponse.of((SuccessCode.SUCCESS_CREATE), createRetrieveResponse)
+		);
+
 	}
 }

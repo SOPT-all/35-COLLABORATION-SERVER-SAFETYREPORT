@@ -20,6 +20,7 @@ import com.safetyreport.global.entity.BaseTimeEntity;
 public class PhotoEntity extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "photo_url", nullable = false)
@@ -33,11 +34,20 @@ public class PhotoEntity extends BaseTimeEntity {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private UserEntity userEntity;
 
+    @ManyToOne(targetEntity = ReportEntity.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "report_id", nullable = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private ReportEntity reportEntity;
+
     @Builder
-    public PhotoEntity(Long id, String photoUrl, LocalDateTime createdAt, UserEntity userEntity) {
+    public PhotoEntity(Long id, String photoUrl, ReportEntity reportEntity, UserEntity userEntity) {
         this.id = id;
         this.photoUrl = photoUrl;
-        this.createdAt = createdAt;
+        this.reportEntity = reportEntity;
         this.userEntity = userEntity;
     }
+
+
+
+
 }
