@@ -15,25 +15,25 @@ import com.safetyreport.global.entity.BaseTimeEntity;
 @Entity
 @Table(name = "user")
 public class UserEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
 
-    @Column(name = "year_report_count", nullable = false)
-    private int yearReportCount;
+	@Column(name = "year_report_count", nullable = false)
+	private int yearReportCount;
 
-    @Column(name = "month_report_count", nullable = false)
-    private int monthReportCount;
+	@Column(name = "month_report_count", nullable = false)
+	private int monthReportCount;
 
-    @Column(name = "mileage", nullable = false)
-    private int mileage;
+	@Column(name = "mileage", nullable = false)
+	private int mileage;
 
-    @Builder
-    public UserEntity(Long id, int mileage, int monthReportCount, int yearReportCount) {
-        this.id = id;
-        this.mileage = mileage;
-        this.monthReportCount = monthReportCount;
-        this.yearReportCount = yearReportCount;
-    }
+	@Builder
+	public UserEntity(Long id, int mileage, int monthReportCount, int yearReportCount) {
+		this.id = id;
+		this.mileage = mileage;
+		this.monthReportCount = monthReportCount;
+		this.yearReportCount = yearReportCount;
+	}
 }

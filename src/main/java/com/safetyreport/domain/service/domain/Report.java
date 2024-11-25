@@ -13,7 +13,8 @@ public class Report {
 	private final LocalDateTime createdAt;
 	private final User user;
 
-	public Report(long id, String content, String address, String phoneNumber, CategoryEnum categoryEnum, LocalDateTime createdAt, User user) {
+	public Report(long id, String content, String address, String phoneNumber, CategoryEnum categoryEnum,
+		LocalDateTime createdAt, User user) {
 		this.address = address;
 		this.id = id;
 		this.content = content;

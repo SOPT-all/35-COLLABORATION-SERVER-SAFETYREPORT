@@ -10,20 +10,20 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "category")
 public class CategoryEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+	@Column(name = "name", nullable = false)
+	private String name;
 
-    @Column(name = "description", nullable = false)
-    private String description;
+	@Column(name = "description", nullable = false)
+	private String description;
 
-    public CategoryEntity(String description, Long id, String name) {
-        this.description = description;
-        this.id = id;
-        this.name = name;
-    }
+	public CategoryEntity(String description, Long id, String name) {
+		this.description = description;
+		this.id = id;
+		this.name = name;
+	}
 }

@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.safetyreport.domain.api.dto.request.PostReportRequest;
 import com.safetyreport.domain.api.dto.response.*;
+
 import jakarta.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,14 +19,14 @@ import com.safetyreport.global.exception.dto.SuccessResponse;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/report")
+@RequestMapping("/api/v1/report")
 @RequiredArgsConstructor
 public class ReportController {
 
 	private final ReportService reportService;
 
 	@GetMapping("/category")
-	ResponseEntity<SuccessResponse<CategoryRetrieveResponse>> getCategoryList(){
+	ResponseEntity<SuccessResponse<CategoryRetrieveResponse>> getCategoryList() {
 		List<Category> categoryList = reportService.getCategoryList();
 
 		List<CategoryDetail> categoryDetailList = categoryList.stream()
@@ -42,21 +44,21 @@ public class ReportController {
 		List<Photo> photoList = reportService.getPhotoList(userId);
 
 		List<PhotoDetail> photoDetailList = photoList.stream()
-				.map(photo -> new PhotoDetail(photo.getId(), photo.getPhotoUrl(), photo.getCreatedAt()))
-				.toList();
+			.map(photo -> new PhotoDetail(photo.getId(), photo.getPhotoUrl(), photo.getCreatedAt()))
+			.toList();
 
 		return ResponseEntity.ok(
-				SuccessResponse.of(SuccessCode.SUCCESS_FETCH, PhotoRetrieveResponse.of(photoDetailList)));
+			SuccessResponse.of(SuccessCode.SUCCESS_FETCH, PhotoRetrieveResponse.of(photoDetailList)));
 	}
 
 	@PostMapping
 	ResponseEntity<SuccessResponse<CreateRetrieveResponse>> createReport(
-			@RequestHeader final long userId,
-			@RequestBody @Valid PostReportRequest postReportRequest
-	){
-		CreateRetrieveResponse createRetrieveResponse =reportService.createReport(userId, postReportRequest);
+		@RequestHeader final long userId,
+		@RequestBody @Valid PostReportRequest postReportRequest
+	) {
+		CreateRetrieveResponse createRetrieveResponse = reportService.createReport(userId, postReportRequest);
 		return ResponseEntity.ok(
-				SuccessResponse.of((SuccessCode.SUCCESS_CREATE), createRetrieveResponse)
+			SuccessResponse.of((SuccessCode.SUCCESS_CREATE), createRetrieveResponse)
 		);
 
 	}
