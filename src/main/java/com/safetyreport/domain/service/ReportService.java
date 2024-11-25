@@ -75,25 +75,27 @@ public class ReportService {
 				.categoryEnum(CategoryEnum.valueOf(postReportRequest.category()))
 				.userEntity(userEntity)
 				.build();
+
 		ReportEntity savedReportEntity = reportRepository.save(reportEntity);
 
+		photoRepository.updateReportIdForPhotos(
+				savedReportEntity.getId(),
+				postReportRequest.photoList().stream()
+						.map(PhotoDetail::photoId)
+						.toList()
+		);
 
-		List<PhotoEntity> photoEntityList= postReportRequest.photoList().stream()
-				.map(photoDetail -> PhotoEntity.builder()
-						.photoUrl(photoDetail.photoUrl())
-						.userEntity(userEntity)
-						.reportEntity(savedReportEntity)
-						.build())
+		List<Long> photoIds = postReportRequest.photoList().stream()
+				.map(PhotoDetail::photoId)
 				.toList();
-
-		List<PhotoEntity> photoEntities = photoRepository.saveAll(photoEntityList);
-		List<PhotoDetail> photoDetailList = photoEntities.stream()
+		List<PhotoDetail> photoDetailList = photoRepository.findAllById(photoIds).stream()
 				.map(photoEntity -> new PhotoDetail(
 						photoEntity.getId(),
 						photoEntity.getPhotoUrl(),
 						LocalDateTime.now()
 				))
 				.toList();
+
 
 		return new CreateRetrieveResponse(
 				savedReportEntity.getId().toString(),
