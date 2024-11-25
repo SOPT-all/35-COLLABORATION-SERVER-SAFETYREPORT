@@ -98,7 +98,7 @@ public class ReportService {
 
 
 		return new CreateRetrieveResponse(
-				savedReportEntity.getId().toString(),
+				savedReportEntity.getId(),
 				photoDetailList,
 				savedReportEntity.getContent(),
 				savedReportEntity.getAddress(),

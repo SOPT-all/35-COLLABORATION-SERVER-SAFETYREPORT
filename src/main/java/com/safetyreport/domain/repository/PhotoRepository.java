@@ -14,5 +14,5 @@ public interface PhotoRepository extends JpaRepository<PhotoEntity, Long> {
 
 	@Modifying
 	@Query("UPDATE PhotoEntity p SET p.reportEntity.id = :reportId WHERE p.id IN :photoIds")
-	int updateReportIdForPhotos(@Param("reportId") Long reportId, @Param("photoIds") List<Long> photoIds);
+	void updateReportIdForPhotos(@Param("reportId") Long reportId, @Param("photoIds") List<Long> photoIds);
 }
